@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h1>Products</h1>
+   <form action="">
+       {% bootstrap_form form layout="horizontal" %}
+       <button type='submit'>Search</button>
+    </form>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Create at</th>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Price</th>
+          <th>Borrower</th>
+          <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for article in object_list %}
+            <tr>
+            <td>{{ article.create_at }}</td>
+            <td>{{ article.number }}</td>
+            <td><a href="{% url 'product_detail' article.id %}">{{ article.name }}</a> </td>
+            <td>{{ article.price }} €</td>
+            <td>{{ article.borrower }}</td>
+            <td>
+                <ul>
+                    {% for category in article.category.all %}
+                        <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            </tr>
+        {% empty %}
+            No articles yet.
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

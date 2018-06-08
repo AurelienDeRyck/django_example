@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+
+{% block content %}
+
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
+    <legend>Category</legend>
+    <form method="post">
+        {% csrf_token %}
+          {% bootstrap_formset category_form layout='inline'%}
+
+            <button type="submit" class="btn btn-primary">
+                {% bootstrap_icon "star" %} Submit
+            </button>
+    </form>
+
+<script>
+    $('.form-group').formset({
+        addCssClass: 'btn btn-info',
+        deleteCssClass: 'btn btn-danger',
+        addText: 'Add Category',
+        deleteText: 'Remove Category'
+    });
+</script>
+{% endblock %}

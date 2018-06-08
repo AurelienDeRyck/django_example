@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Detailed Product</h1>
+<h2>{{ object.name }}</h2>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Create at</th>
+        <th>Number</th>
+        <th>Price</th>
+        <th>Given at</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ object.create_at }}</td>
+        <td>{{ object.number }}</td>
+        <td>{{ object.price }} €</td>
+        <td>{{ object.given_at }}</td>
+        <td>
+            <ul>
+                {% for category in object.category.all %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+   <a href="{% url 'product_update_form' pk=object.id %}" type="button" class="btn btn-info">Update</a>
+   <a href="{% url 'product_confirm_delete' pk=object.id %}" type="button" class="btn btn-danger">Delete</a>
+{% endblock %}

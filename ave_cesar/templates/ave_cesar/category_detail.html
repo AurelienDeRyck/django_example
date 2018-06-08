@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Detailed Product</h1>
+<h2>{{ object.name }}</h2>
+
+<a href="{% url 'category_update_form' pk=object.id %}" type="button" class="btn btn-info">Update</a>
+<a href="{% url 'category_confirm_delete' pk=object.id %}" type="button" class="btn btn-danger">Delete</a>
+{% endblock %}
